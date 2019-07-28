@@ -10,11 +10,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cheema.hardeep.sahibdeep.creditapplication.activities.TransactionInfoActivity;
+import cheema.hardeep.sahibdeep.creditapplication.activities.transactionHistory.TransactionsListActivity;
 import cheema.hardeep.sahibdeep.creditapplication.model.ClickType;
 import cheema.hardeep.sahibdeep.creditapplication.model.Customer;
 import cheema.hardeep.sahibdeep.creditapplication.R;
-import cheema.hardeep.sahibdeep.creditapplication.activities.TransactionActivity;
+import cheema.hardeep.sahibdeep.creditapplication.activities.ProcessTransactionActivity;
 
 /**
  * @author Hardeep Singh (hardeep@cazisoft.com)
@@ -52,9 +52,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
             @Override
             public void onClick(View view) {
                 if(clickType.equals(ClickType.USER_INFO)) {
-                    view.getContext().startActivity(TransactionActivity.createIntent(view.getContext(), customer.getSerialNo()));
+                    view.getContext().startActivity(ProcessTransactionActivity.createIntent(view.getContext(), customer.getSerialNo()));
                 } else if(clickType.equals(ClickType.TRANSACTION)) {
-                    view.getContext().startActivity(TransactionInfoActivity.createIntent(view.getContext(), customer.getSerialNo()));
+                    view.getContext().startActivity(TransactionsListActivity.createIntent(view.getContext(), customer.getSerialNo()));
                 }
             }
         });

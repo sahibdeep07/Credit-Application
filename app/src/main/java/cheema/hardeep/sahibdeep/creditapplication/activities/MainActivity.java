@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import cheema.hardeep.sahibdeep.creditapplication.activities.transactionHistory.TransactionCustomersActivity;
 import cheema.hardeep.sahibdeep.creditapplication.adapters.CustomerAdapter;
 import cheema.hardeep.sahibdeep.creditapplication.database.Database;
 import cheema.hardeep.sahibdeep.creditapplication.R;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         trasactionHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().startActivity(TransactionHistoryActivity.createIntent(view.getContext()));
+                view.getContext().startActivity(TransactionCustomersActivity.createIntent(view.getContext()));
             }
         });
 

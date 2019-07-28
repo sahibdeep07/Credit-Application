@@ -5,7 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
-    tools:context=".activities.TransactionActivity">
+    tools:context=".activities.ProcessTransactionActivity">
+
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Date"
+        android:gravity="center"
+        android:enabled="false"
+        android:textSize="16sp"
+        android:typeface="serif"
+        android:textColor="@android:color/black"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@id/amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/amount"
@@ -16,7 +32,8 @@
         android:textSize="16sp"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/date"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText

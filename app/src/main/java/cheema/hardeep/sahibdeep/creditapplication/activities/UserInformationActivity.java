@@ -16,6 +16,7 @@ import cheema.hardeep.sahibdeep.creditapplication.R;
 
 public class UserInformationActivity extends AppCompatActivity {
 
+    public static final String CREATE_CUSTOMER = "Create Customer";
 
     EditText name, phoneNumber, address, dob;
     ImageView dobButton;
@@ -32,6 +33,8 @@ public class UserInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_information);
+        setTitle(CREATE_CUSTOMER);
+
         findViews();
         database = new Database(this);
         save.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +56,7 @@ public class UserInformationActivity extends AppCompatActivity {
         save = findViewById(R.id.saveButton);
     }
 
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         return new Customer(name.getText().toString(),
                 phoneNumber.getText().toString(),
                 address.getText().toString(),

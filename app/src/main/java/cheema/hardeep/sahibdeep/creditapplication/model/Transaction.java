@@ -45,4 +45,8 @@ public class Transaction {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public void createNegativeAmount() {
+        this.amount = -1 * this.amount;
+    }
 }
