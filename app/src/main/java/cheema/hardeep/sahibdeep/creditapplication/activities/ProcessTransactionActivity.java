@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,23 +78,29 @@ public class ProcessTransactionActivity extends AppCompatActivity {
     }
 
     private void handleLend(View view) {
+        if(checkAmount()){
         Transaction transaction = createTransaction();
         database.insertCustomerTransaction(customer, transaction);
         resetViews();
         Toast.makeText(view.getContext(), "Money Lend Successful", Toast.LENGTH_SHORT).show();
+        }
+        else Toast.makeText(this, "Please Fill Amount", Toast.LENGTH_SHORT).show();
     }
 
     private void handleReceive(View view) {
-        int inputAmount = getInputAmount();
-        if (inputAmount <= customer.getAmount()) {
-            Transaction transaction = createTransaction();
-            transaction.createNegativeAmount();
-            database.insertCustomerTransaction(customer, transaction);
-            resetViews();
-            Toast.makeText(view.getContext(), "Money Receive Successful", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(view.getContext(), "Bitch WTF! I only owe you " + customer.getAmount(), Toast.LENGTH_SHORT).show();
+        if(checkAmount()) {
+            int inputAmount = getInputAmount();
+            if (inputAmount <= customer.getAmount()) {
+                Transaction transaction = createTransaction();
+                transaction.createNegativeAmount();
+                database.insertCustomerTransaction(customer, transaction);
+                resetViews();
+                Toast.makeText(view.getContext(), "Money Received Successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(view.getContext(), "Pending Amount is :" + customer.getAmount(), Toast.LENGTH_SHORT).show();
+            }
         }
+        else Toast.makeText(this, "Please Fill Amount", Toast.LENGTH_SHORT).show();
     }
 
     private Transaction createTransaction() {
@@ -124,5 +134,11 @@ public class ProcessTransactionActivity extends AppCompatActivity {
         lendButton = findViewById(R.id.lendButton);
         receiveButton = findViewById(R.id.receiveButton);
         date = findViewById(R.id.date);
+    }
+
+    private boolean checkAmount() {
+        if (amount.getText().toString().trim().isEmpty()) {
+            return false;
+        } else return true;
     }
 }

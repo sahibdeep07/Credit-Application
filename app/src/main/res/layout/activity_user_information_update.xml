@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
-    tools:context=".activities.MainActivity">
+    tools:context=".UserInformationUpdate">
 
     <EditText
         android:id="@+id/name"
@@ -98,16 +97,29 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/updateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_weight="1"
         android:background="@drawable/curved_button"
-        android:text="Save"
+        android:text="update"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toStartOf="@id/deleteButton"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/curved_button"
+        android:text="delete"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/updateButton"
         app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
 

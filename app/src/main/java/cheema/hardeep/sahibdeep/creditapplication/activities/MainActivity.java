@@ -5,18 +5,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import cheema.hardeep.sahibdeep.creditapplication.activities.transactionHistory.TransactionCustomersActivity;
 import cheema.hardeep.sahibdeep.creditapplication.adapters.CustomerAdapter;
 import cheema.hardeep.sahibdeep.creditapplication.database.Database;
 import cheema.hardeep.sahibdeep.creditapplication.R;
 import cheema.hardeep.sahibdeep.creditapplication.model.ClickType;
+import cheema.hardeep.sahibdeep.creditapplication.model.Customer;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    static RecyclerView recyclerView;
     FloatingActionButton addUser, trasactionHistory;
+    static ImageView noRecord;
 
     CustomerAdapter customerAdapter;
     Database db;
@@ -34,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        customerAdapter.updateCustomerList(db.fetchValues());
+        ArrayList<Customer> checkRecordList = db.fetchValues();
+        if(checkRecordList.isEmpty()){
+            noRecord.setVisibility(View.VISIBLE);
+        }
+        else {
+            noRecord.setVisibility(View.GONE);
+            customerAdapter.updateCustomerList(db.fetchValues());
+        }
     }
 
     private void setUpRecyclerView() {
@@ -47,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         addUser = findViewById(R.id.addUser);
         trasactionHistory = findViewById(R.id.transactionHistory);
+        noRecord = findViewById(R.id.noRecord);
 
         addUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,4 +79,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

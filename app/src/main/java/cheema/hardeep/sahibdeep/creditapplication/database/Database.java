@@ -145,4 +145,24 @@ public class Database extends SQLiteOpenHelper {
         mydb.update(CUSTOMER_TABLE, contentValues, "srno = ?", new String[]{customer.getSerialNo()});
         mydbclose();
     }
+
+    public void deleteCustomer(String serialNo){
+        mydbopen();
+        mydb.delete(CUSTOMER_TABLE, "srno=?", new String[]{serialNo});
+//        mydb.delete(CUSTOMER_TRANSACTION_TABLE, "srno=?", new String[]{serialNo});
+        mydbclose();
+    }
+
+    public void updateCustomer(String serialNo, Customer customerData){
+        mydbopen();
+        ContentValues myValues = new ContentValues();
+        myValues.put("name", String.valueOf(customerData.getName()));
+        myValues.put("address", String.valueOf(customerData.getAddress()));
+        myValues.put("phone", String.valueOf(customerData.getPhone()));
+        myValues.put("dob", String.valueOf(customerData.getDOB()));
+        myValues.put("gender", String.valueOf(customerData.getGender()));
+        myValues.put("amount", customerData.getAmount());
+        mydb.update(CUSTOMER_TABLE, myValues, "srno=?", new String[]{serialNo});
+        mydbclose();
+    }
 }
