@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import cheema.hardeep.sahibdeep.creditapplication.R;
 import cheema.hardeep.sahibdeep.creditapplication.adapters.CustomerAdapter;
 import cheema.hardeep.sahibdeep.creditapplication.database.Database;
-import cheema.hardeep.sahibdeep.creditapplication.model.ClickType;
+import cheema.hardeep.sahibdeep.creditapplication.model.CustomerAdapterClickType;
 
 public class TransactionCustomersActivity extends AppCompatActivity {
 
@@ -33,7 +33,7 @@ public class TransactionCustomersActivity extends AppCompatActivity {
 
         recyclerView =  findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        customerAdapter = new CustomerAdapter(ClickType.TRANSACTION);
+        customerAdapter = new CustomerAdapter(CustomerAdapterClickType.TRANSACTION);
         recyclerView.setAdapter(customerAdapter);
         customerAdapter.updateCustomerList(database.fetchValuesWithAmount());
     }

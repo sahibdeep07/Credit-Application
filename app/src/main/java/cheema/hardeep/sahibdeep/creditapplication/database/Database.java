@@ -120,7 +120,6 @@ public class Database extends SQLiteOpenHelper {
         return results;
     }
 
-
     public Customer getCustomer(String serialNo) {
         mydbopen();
         Cursor result = mydb.rawQuery("select * from customerinfo WHERE srno = ?", new String[]{serialNo});
@@ -149,7 +148,7 @@ public class Database extends SQLiteOpenHelper {
     public void deleteCustomer(String serialNo){
         mydbopen();
         mydb.delete(CUSTOMER_TABLE, "srno=?", new String[]{serialNo});
-//        mydb.delete(CUSTOMER_TRANSACTION_TABLE, "srno=?", new String[]{serialNo});
+        //Todo Find all Serial No Transaction and Delete them
         mydbclose();
     }
 

@@ -41,6 +41,8 @@
         android:layout_marginTop="8dp"
         android:hint="Address"
         android:lines="5"
+        android:maxLines="5"
+        android:gravity="top"
         android:textSize="16sp"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +110,34 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/curved_button"
+        android:text="update"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toStartOf="@id/deleteButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/curved_button"
+        android:text="delete"
+        android:visibility="gone"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/updateButton"
         app:layout_constraintTop_toBottomOf="@id/radioGroup" />
 
 

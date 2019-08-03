@@ -28,7 +28,6 @@ public class ProcessTransactionActivity extends AppCompatActivity {
 
     public static final String CUSTOMER_ID_KEY = "customer-id";
     public static final String PROCESS_TRANSACTIONS = "Process Transactions";
-    public static final String DATE_PREFIX = "Date: ";
 
     EditText amount, description;
     TextView date;
@@ -115,7 +114,7 @@ public class ProcessTransactionActivity extends AppCompatActivity {
     private void setCurrentDate() {
         String myFormat = "MMM d, yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        date.setText(DATE_PREFIX + sdf.format(new Date()));
+        date.setText(sdf.format(new Date()));
     }
 
     private void resetViews() {

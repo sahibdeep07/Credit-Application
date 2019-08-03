@@ -5,11 +5,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,8 +14,9 @@ import cheema.hardeep.sahibdeep.creditapplication.activities.transactionHistory.
 import cheema.hardeep.sahibdeep.creditapplication.adapters.CustomerAdapter;
 import cheema.hardeep.sahibdeep.creditapplication.database.Database;
 import cheema.hardeep.sahibdeep.creditapplication.R;
-import cheema.hardeep.sahibdeep.creditapplication.model.ClickType;
+import cheema.hardeep.sahibdeep.creditapplication.model.CustomerAdapterClickType;
 import cheema.hardeep.sahibdeep.creditapplication.model.Customer;
+import cheema.hardeep.sahibdeep.creditapplication.model.UserInformationClickType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,15 +43,17 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Customer> checkRecordList = db.fetchValues();
         if(checkRecordList.isEmpty()){
             noRecord.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
         }
         else {
             noRecord.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
             customerAdapter.updateCustomerList(db.fetchValues());
         }
     }
 
     private void setUpRecyclerView() {
-        customerAdapter = new CustomerAdapter(ClickType.USER_INFO);
+        customerAdapter = new CustomerAdapter(CustomerAdapterClickType.USER_INFO);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(customerAdapter);
     }
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(UserInformationActivity.createIntent(v.getContext()));
+                startActivity(UserInformationActivity.createIntent(v.getContext(), null, UserInformationClickType.ADD));
             }
         });
 

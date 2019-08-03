@@ -1,8 +1,7 @@
 package cheema.hardeep.sahibdeep.creditapplication.model;
 
 
-public enum ClickType {
+public enum CustomerAdapterClickType {
     USER_INFO,
-    TRANSACTION,
-    UPDATE_OR_DELETE
+    TRANSACTION
 }
